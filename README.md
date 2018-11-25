@@ -5,8 +5,8 @@ Is working ...
 
 
 
-<img src= 'https://i.imgur.com/undefined.png'/>
-<img src = 'https://i.imgur.com/undefined.png'/>
+<img src= 'https://imgur.com/undefined.png'/>
+<img src = 'https://imgur.com/undefined.png'/>
 
 
 
