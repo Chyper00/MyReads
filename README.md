@@ -1,6 +1,7 @@
 # MyReads 
 
-My Reads is a project from <a href="https://udacity.com">Udacity</a>
+My Reads is a project from <a href="https://udacity.com">Udacity</a> 
+This project render books from a back-end server, separate from shelves : 'currentlyReading', 'wantToRead', 'Read', move the books from shelves, also let the user search for books.
 
 <a href="https://chyper00.github.io/MyReads/"> Demo </a>
 
