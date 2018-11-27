@@ -1,107 +1,82 @@
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
+import { Debounce } from 'react-throttle';
 import './App.css'
-import BookCard from './BookCard'
-
-import {Button, Dropdown,NavItem, Col,Card,CardTitle,Row,CardPanel,Toast} from 'react-materialize'
+import Books from './Books'
+import {Col,Row,} from 'react-materialize'
 import {Link} from 'react-router-dom'
-
-
-
 
 class Search extends React.Component {
     constructor () {
-        super();
+      super();
         this.state = {
             query : 'a',
             books : ''
         }
-
-        
     }
 
+    handleChange = (e) => {
 
-    sBook = () => {
-
-        BooksAPI.search(this.state.query).then(all => {            
-            console.log(all)
-            this.setState({
-                books: all
-            })
-        })
-    }
-    componentDidMount(){
-        this.sBook();
-        
-    }
-
-    handleChange = (e) =>{
-        
-
-        console.log(e.target.value)
-        this.setState({
-            query: e.target.value
-        })
-
-         BooksAPI.search(this.state.query).then(all => {            
-            console.log(all)
-            this.setState({
-                books: all
-            })
-        }).catch(err =>{
-            console.log(err)
-        })
-
+       this.setState({
+           books: this.props.search(e.target.value)
+       }) 
+      
     }
  
-  render() {
-    let books = this.state.books;
-    console.log(books);
-    
-    
-    return (
-     
-    
-   <div class="row">
-    
-        <form class="col s12">
-            <div class="row">
-            
-                <div class="col l1">
-                <Link to='/'>    <h2><a href=""> <i class="material-icons">arrow_back</i> </a></h2> </Link>
+    render() {
+        const {books} = this.state;
+        const {moveBooks} = this.props
+        
+        return (    
+        
+        <div className="row">
+            <form className="col s12">
+                <div className="row">            
+                    <div className="col l1">
+                        <Link to='/'> <h2><i className="material-icons">arrow_back</i></h2> </Link>
+                    </div>
+                    <div className="input-field col m8">
+                        <Debounce time="100" handler="onChange">
+                            <input placeholder="Name of the book ..." id="bSearch" type="text" class="validate" onChange={this.handleChange}/>  
+                        </Debounce> 
+                    </div>
                 </div>
-                <div class="input-field col m8">
-                <input placeholder="Name of the book" id="bSearch" type="text" class="validate" onChange={this.handleChange}/>
-                </div>
-            </div>
-        </form>
+            </form>
+            <div className="row"> 
 
-        <br/> 
-        <div class="row">  
-            {this.state.books ===  undefined  ? <p> No books found</p> : 
-            
-            Object.keys(books).map(function(key) {
-               
-                return (      
-                    <Col s={6} m={2}>                      
-                    
-                    { books[key].hasOwnProperty('imageLinks') ? <p><BookCard  thumb = {books[key].imageLinks.thumbnail } title = {books[key].title} id={books[key].id} authors={ books[key].authors }/> </p> : <p>  <BookCard  thumb = { 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg' } title = {books[key].title} id={books[key].id} authors={ books[key].authors }/>  </p>}
-                    
+            <Row>
+                { 
+                    books === undefined  ? 
+                    <h2> No books found ... </h2> :
+                    Object.keys(books).map(function(key) {
+
                         
-                    </Col>  
-                                                 
-                )
-            
-        })
-        
-        
-        } 
-     </div> 
+                        return ( 
+                            
+                            <Col m={2} s={6}>                                    
+                                  <Books 
+                                    title = {books[key].title} 
+                                    thumb = {  books[key].hasOwnProperty('imageLinks') ? books[key].imageLinks.smallThumbnail : 'https://vignette.wikia.nocookie.net/max-steel-reboot/images/7/72/No_Image_Available.gif/revision/latest?cb=20130902173013'} 
+                                    moveBooks = {moveBooks} 
+                                    id = {books[key].id}
+                                    authors = {books[key].authors}
+                                    shelf = {books[key].shelf}  
+                                />                                             
+                            </Col> 
+                                                                                              
+                        )  
+                        
+                        
+                                              
 
-     </div>
-     
-    )
-  }
+                    })
+                }
+            </Row> 
+            
+            </div>
+        </div>
+        
+        )
+    }
 }
 
 export default Search
