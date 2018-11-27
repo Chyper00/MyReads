@@ -34,7 +34,7 @@ How to use :
 `BookShelve.js` is a simple component that separetes books to `currently read`, `want to read`, `read` (Recomendation from Guilherme udacity mentor). 
 * ` Object.keys(books).map(function(key) ` Map the books of the ` async loadBooks () ` from `App.js` and pass the data for the child component `<Books/>`
 
-`Search.js` render the search page and make sure that even if the book has no image, will not brok the page.
+`Search.js` render the search page and make sure that even if the book has no image, will not broke the page.
 
 `BooksAPI.js` was provide by Udacity and has 
 
