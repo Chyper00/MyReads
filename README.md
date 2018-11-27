@@ -18,7 +18,6 @@ How to use :
 * ` moveBooks  = (bookId, status) =>` an arrow function that recives `bookId` , `status` from `Books.js` and make a uptade promice, that change the shelf of the book.
 * ` search = (query) ` an arrow function that recives ` query ` from `Search.js` nd make a uptade promice, that return the book's query.
 * ` navChange = (shelf) ` an arrow function that recives param like 'currenltyReading', 'wanToRead', 'read' and 'all' from `Nav.js` 
-* ` const styles = {   trasition : 'all 1s ease-out' } ` Animations are important, they let the user know where he is, and where he went. So, that line make a transition in anything that is possible a trasition.
 * ` shelves.map(i =>` map an array, that has `currently read`, `want to read`, `read`, and call <BookShelve/>
 
 `Nav.js` is the header and :
