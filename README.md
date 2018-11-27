@@ -45,13 +45,13 @@ more info https://github.com/udacity/reactnd-project-myreads-starter
 
 # Links that i used
 
-` Matelialize `https://materializecss.com/
-` react-materialize `https://react-materialize.github.io/#/
-` What is promice [PT-BR] `https://braziljs.org/blog/promises-no-javascript/
-` How to map a object keys `https://stackoverflow.com/questions/14810506/map-function-for-objects-instead-of-arrays
-` how to animate in react `https://www.youtube.com/watch?v=ztvNwFV0Ai0, https://reactjs.org/docs/animation.html
-` Arrow Function ` https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Arrow_functions
-` async await [PT-BR]` https://tableless.com.br/entendendo-o-async-e-o-await-em-javascript/
+* ` Matelialize `https://materializecss.com/
+* ` react-materialize `https://react-materialize.github.io/#/
+* ` What is promice [PT-BR] `https://braziljs.org/blog/promises-no-javascript/
+* ` How to map a object keys `https://stackoverflow.com/questions/14810506/map-function-for-objects-instead-of-arrays
+* ` how to animate in react `https://www.youtube.com/watch?v=ztvNwFV0Ai0, https://reactjs.org/docs/animation.html
+* ` Arrow Function ` https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+* ` async await [PT-BR]` https://tableless.com.br/entendendo-o-async-e-o-await-em-javascript/
 
 
 # Licence 
