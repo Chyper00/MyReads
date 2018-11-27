@@ -14,10 +14,6 @@ How to use :
 ## Documentation 
 
 `App.js` is the main component that has :
-
-## Documentation 
-
-`App.js` is the main component that has :
 * ` async loadBooks () ` that make a async request with a promice, loading all the books.
 * ` moveBooks  = (bookId, status) =>` an arrow function that recives `bookId` , `status` from `Books.js` and make a uptade promice, that change the shelf of the book.
 * ` search = (query) ` an arrow function that recives ` query ` from `Search.js` nd make a uptade promice, that return the book's query.
