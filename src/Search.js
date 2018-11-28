@@ -6,13 +6,12 @@ import {Col,Row,} from 'react-materialize'
 import {Link} from 'react-router-dom'
 
 class Search extends React.Component {
-    constructor () {
-      super();
-        this.state = {
-            query : 'a',
+    state = {
+        
+            query : '',
             books : ''
         }
-    }
+    
 
     handleChange = (e) => {
 
@@ -48,19 +47,19 @@ class Search extends React.Component {
                     books === undefined  ? 
                     <h2> No books found ... </h2> :
                     Object.keys(books).map(function(key) {
-
+                        console.log(books[key])
                         
                         return ( 
                             
                             <Col m={2} s={6}>                                    
                                   <Books 
                                     title = {books[key].title} 
-                                    thumb = {  books[key].hasOwnProperty('imageLinks') ? books[key].imageLinks.smallThumbnail : 'https://vignette.wikia.nocookie.net/max-steel-reboot/images/7/72/No_Image_Available.gif/revision/latest?cb=20130902173013'} 
+                                    thumb = {books[key].hasOwnProperty('imageLinks') ? books[key].imageLinks.smallThumbnail : 'https://vignette.wikia.nocookie.net/max-steel-reboot/images/7/72/No_Image_Available.gif/revision/latest?cb=20130902173013'} 
                                     moveBooks = {moveBooks} 
                                     id = {books[key].id}
                                     authors = {books[key].authors}
-                                    shelf = {books[key].shelf}  
-                                />                                             
+                                    shelf = {'None'}  
+                                  />                                             
                             </Col> 
                                                                                               
                         )  

@@ -1,12 +1,32 @@
-import React from 'react'
+import React , {PureComponent} from 'react'
 import {Dropdown,NavItem} from 'react-materialize'
 import './App.css'
 
-class Books extends React.Component {
+
+////////////////////////////////////////////////////////
+///
+/// Pure Component
+///
+////////////////////////////////////////////////////////
+
+class Books extends PureComponent {
+
+    constructor(props){
+        super(props);
+        this.state={
+            thumb : props.thumb,
+            title : props.title,
+            id : props.id,
+            moveBooks : props.moveBooks,
+            authors : props.authors,
+            shelf : props.shelf
+        }
+
+    }
     
     render(){
         
-        const { thumb, title, id, moveBooks,authors, shelf } = this.props;
+        const { thumb, title, id, moveBooks,authors, shelf } = this.state;
         return(              
             <div className ='card transparent z-depth-4 '> 
                 <small className= 'cardbg'> {shelf}   </small>

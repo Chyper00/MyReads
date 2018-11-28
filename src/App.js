@@ -72,9 +72,11 @@ class BooksApp extends React.Component {
   moveBooks  = (bookId, status) => {
     this.triggerLoading (true);
     BooksAPI.update({id : bookId}, status).then (value =>{ 
-      window.Materialize.toast(`Moved !`, 1000)      
-      this.loadBooks (); 
+      window.Materialize.toast(`Moved !`, 1000) 
+      this.loadBooks ();      
+     
     })  
+     
   }
 
   async loadBooks () {
@@ -87,7 +89,7 @@ class BooksApp extends React.Component {
     })
   }
 
-  async componentDidMount(){      
+  componentDidMount(){      
     this.loadBooks(); 
   }
  

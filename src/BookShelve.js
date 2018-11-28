@@ -7,6 +7,7 @@ import {Col,Row} from 'react-materialize'
 class BookShelve extends React.Component {
   
     render(){
+
         const {books, moveBooks,s } = this.props;   
        
     return(   
@@ -14,7 +15,8 @@ class BookShelve extends React.Component {
             <br/>
             <Row>
                 { 
-                 Object.keys(books).map(function(key) {                    
+                 Object.keys(books).map(function(key) { 
+                                     
                    return (
                         books[key].shelf === s ? 
                      
@@ -45,13 +47,8 @@ class BookShelve extends React.Component {
                                     />     
                                 </Col>
                                 :
-                                <p></p>
-
-
-
-                           
-                   )
-                                                                                    
+                                <p></p>                           
+                   )                                              
                   
                 })
                 }

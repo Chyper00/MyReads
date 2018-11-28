@@ -48,6 +48,9 @@ more info https://github.com/udacity/reactnd-project-myreads-starter
 * ` how to animate in react `https://www.youtube.com/watch?v=ztvNwFV0Ai0, https://reactjs.org/docs/animation.html
 * ` Arrow Function ` https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Arrow_functions
 * ` async await [PT-BR]` https://tableless.com.br/entendendo-o-async-e-o-await-em-javascript/
+* ` react- throttle ` https://github.com/gmcquistin/react-throttle#readme
+* ` Debounce ` https://lodash.com/docs/4.17.11#debounce
+* ` PureComponent ` https://codesandbox.io/s/3vpp84yp5
 
 
 # Licence 
