@@ -12,20 +12,14 @@ body, .app {
   position:absolute;  
   background: #5c6bc0;
   color: white;  
-  border-radius: 4px;  
-  left: 2px;
-  top: 2px;
+  border: 3px solid #5c6bc0;
 }
 
 .delete {
   position:absolute;
-  width: '100%';
-  border: 1px solid #5c6bc0;
-  border-radius: 4px;  
   right: -10px;
   top: -10px;
-  color: #5c6bc0;
-}
-a:link:hover {
-  color: #5c6bc0;
+  color: #5c6bc0; 
+  background: white;
+  
 }

@@ -5,7 +5,7 @@ const Nav = (props) => (
 
         <div>
             <nav>
-                <div className="nav-wrapper indigo lighten-1">   
+                <div className="nav-wrapper indigo lighten-1">                       
                     <Link to='/Search' className="brand-logo right"><i className="material-icons">search</i> </Link>
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
                         <li className =""><Link to='/' onClick={()=> props.change('all')}>All</Link></li>

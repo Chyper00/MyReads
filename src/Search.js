@@ -9,6 +9,7 @@ class Search extends React.Component {
     state = {
         
             query : '',
+            label : '',
             books : ''
         }
     
@@ -23,7 +24,7 @@ class Search extends React.Component {
  
     render() {
         const {books} = this.state;
-        const {moveBooks} = this.props
+        const {moveBooks,shelfBooks,load} = this.props
         
         return (    
         
@@ -31,7 +32,7 @@ class Search extends React.Component {
             <form className="col s12">
                 <div className="row">            
                     <div className="col l1">
-                        <Link to='/'> <h2><i className="material-icons">arrow_back</i></h2> </Link>
+                        <Link to='/' onClick= {() => load(shelfBooks)}> <h2><i className="material-icons">arrow_back</i></h2> </Link>
                     </div>
                     <div className="input-field col m8">
                         <Debounce time="100" handler="onChange">
@@ -44,29 +45,23 @@ class Search extends React.Component {
 
             <Row>
                 { 
-                    books === undefined  ? 
-                    <h2> No books found ... </h2> :
-                    Object.keys(books).map(function(key) {
-                        console.log(books[key])
-                        
-                        return ( 
-                            
-                            <Col m={2} s={6}>                                    
+                    books === undefined  || books === '' ?
+                    <h2 > No books found ... </h2> :
+                    Object.keys(books).map(key => {   
+                                              
+                        return (                             
+                           <Col m={2} s={6} key='key'>                                   
                                   <Books 
                                     title = {books[key].title} 
                                     thumb = {books[key].hasOwnProperty('imageLinks') ? books[key].imageLinks.smallThumbnail : 'https://vignette.wikia.nocookie.net/max-steel-reboot/images/7/72/No_Image_Available.gif/revision/latest?cb=20130902173013'} 
                                     moveBooks = {moveBooks} 
                                     id = {books[key].id}
                                     authors = {books[key].authors}
-                                    shelf = {'None'}  
+                                    shelf = { shelfBooks.map((b) => { if(b.id === books[key].id ){ return  b.shelf }else{return false}})  === false ? 'none' : shelfBooks.map((b) => { if(b.id === books[key].id ){ return  b.shelf }else {return false}}) } 
+                                        
                                   />                                             
-                            </Col> 
-                                                                                              
-                        )  
-                        
-                        
-                                              
-
+                            </Col>                                                     
+                        ) 
                     })
                 }
             </Row> 

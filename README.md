@@ -58,3 +58,10 @@ more info https://github.com/udacity/reactnd-project-myreads-starter
 MIT
 
 
+
+# Updates 
+
+* ` make less request on the server `
+* ` improve the search page`
+* ` improve Books.js using Pure Component`
+* ` improve Nav.js using stateless component`
