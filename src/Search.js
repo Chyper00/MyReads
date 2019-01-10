@@ -35,7 +35,7 @@ class Search extends React.Component {
                         <Link to='/' onClick= {() => load(shelfBooks)}> <h2><i className="material-icons">arrow_back</i></h2> </Link>
                     </div>
                     <div className="input-field col m8">
-                        <Debounce time="100" handler="onChange">
+                        <Debounce time="300" handler="onChange">
                             <input placeholder="Name of the book ..." id="bSearch" type="text" class="validate" onChange={this.handleChange}/>  
                         </Debounce> 
                     </div>
