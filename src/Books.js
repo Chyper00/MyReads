@@ -3,8 +3,9 @@ import {Dropdown,NavItem} from 'react-materialize'
 import './App.css'
 class Books extends React.Component {   
     render(){        
-        const { thumb, title, id, moveBooks, shelf, remove } = this.props; 
-              
+        const { thumb, title, id, moveBooks, shelf, remove , grid } = this.props; 
+        console.log(grid)
+      
         return(  
             <div>
                 <div className="card transparent z-depth-4">

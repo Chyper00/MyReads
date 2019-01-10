@@ -48,7 +48,11 @@ class Search extends React.Component {
                     books === undefined  || books === '' ?
                     <h2 > No books found ... </h2> :
                     Object.keys(books).map(key => {   
-                                              
+                     
+                          let  tag =  Object.keys(shelfBooks).map(k => {   
+                            return ( shelfBooks[k].id === books[key].id ? shelfBooks[k].shelf : '' );
+                          } )
+                                    
                         return (                             
                            <Col m={2} s={6} key='key'>                                   
                                   <Books 
@@ -56,11 +60,12 @@ class Search extends React.Component {
                                     thumb = {books[key].hasOwnProperty('imageLinks') ? books[key].imageLinks.smallThumbnail : 'https://vignette.wikia.nocookie.net/max-steel-reboot/images/7/72/No_Image_Available.gif/revision/latest?cb=20130902173013'} 
                                     moveBooks = {moveBooks} 
                                     id = {books[key].id}
-                                    authors = {books[key].authors}
-                                    shelf = { shelfBooks.map((b) => { if(b.id === books[key].id ){ return  b.shelf }else{return false}})  === false ? 'none' : shelfBooks.map((b) => { if(b.id === books[key].id ){ return  b.shelf }else {return false}}) } 
-                                        
-                                  />                                             
-                            </Col>                                                     
+                                    authors = {books[key].authors}                                    
+                                    shelf = {tag } 
+                                  />                                      
+                            </Col>    
+                           
+                            
                         ) 
                     })
                 }
@@ -74,3 +79,4 @@ class Search extends React.Component {
 }
 
 export default Search
+ 

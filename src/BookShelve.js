@@ -2,13 +2,14 @@ import React from 'react'
 import Books from './Books'
 
 import {Col,Row} from 'react-materialize'
-
+let colm;
+let cols;
 
 class BookShelve extends React.Component {
   
     render(){
 
-        const {books, moveBooks,s } = this.props;   
+        const {books, moveBooks, s , grid} = this.props;   
        
     return(   
         <div><br/>  
@@ -18,9 +19,13 @@ class BookShelve extends React.Component {
                 { 
                     Object.keys(books).map(function(key) {                    
                     return (
+
                             books[key].shelf === s ? 
+
+                           
                             
-                                <Col m={2} s={6} key = {key}>
+                            
+                                <Col  m={2} s={6} key = {key}>
                                     <Books 
                                         title = {books[key].title} 
                                         thumb = {books[key].imageLinks.smallThumbnail} 
@@ -28,9 +33,12 @@ class BookShelve extends React.Component {
                                         id = {books[key].id}
                                         authors = {books[key].authors}
                                         desc = {books[key].description}
-                                        shelf = {books[key].shelf}                                
+                                        shelf = {books[key].shelf}   
+                                                                  
                                     />     
                                 </Col> 
+                            
+                                
 
                             :   s === 'all'  ?
 
@@ -42,7 +50,8 @@ class BookShelve extends React.Component {
                                             id = {books[key].id}
                                             desc = {books[key].description}
                                             authors = {books[key].authors}
-                                            shelf = {books[key].shelf}                                
+                                            shelf = {books[key].shelf}  
+                                                                         
                                         />     
                                     </Col>
                                     

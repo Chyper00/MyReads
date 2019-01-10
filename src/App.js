@@ -35,6 +35,7 @@ class BooksApp extends React.Component {
         books : '',
         isLoading : true,
         shelf : 'all',
+        gridValue : true,
         movBooks : ''
       }
   }
@@ -93,6 +94,22 @@ class BooksApp extends React.Component {
 
   }
 
+  grid = (gridV) =>{
+
+    gridV ?
+
+    this.setState({
+      gridValue : false
+    })
+
+    :
+
+    this.setState({
+      gridValue : true
+    })
+
+  }
+
 
   remove = (bookId, status) => {
     
@@ -126,7 +143,7 @@ class BooksApp extends React.Component {
   render() {    
     return (
         <div >
-          <Nav change = {this.navChange}/> 
+          <Nav change = {this.navChange} grid = {this.grid} gridValue = {this.state.gridValue}/> 
           <div className="container"> 
               { this.state.isLoading &&  
                 <div className="progress">
@@ -138,6 +155,7 @@ class BooksApp extends React.Component {
                     books= {this.state.movBooks}                       
                     s = {this.state.shelf} 
                     moveBooks = {this.moveBooks}  
+                    grid = {this.state.gridValue}
                 />            
               )}/>
               <Route exact path='/search' render ={() => (  
