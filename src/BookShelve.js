@@ -2,66 +2,69 @@ import React from 'react'
 import Books from './Books'
 
 import {Col,Row} from 'react-materialize'
-let colm;
-let cols;
+
 
 class BookShelve extends React.Component {
   
     render(){
 
-        const {books, moveBooks, s , grid} = this.props;   
+        const {books, moveBooks, s,remove} = this.props;   
        
     return(   
-        <div><br/>  
+      
             
             <Row>
                 
                 { 
                     Object.keys(books).map(function(key) {                    
                     return (
+                        
 
                             books[key].shelf === s ? 
 
-                           
                             
-                            
-                                <Col  m={2} s={6} key = {key}>
-                                    <Books 
+                            <Col l = {3} xl = {2} m={3} s={6}  key = {key}>
+                                   <Books 
                                         title = {books[key].title} 
-                                        thumb = {books[key].imageLinks.smallThumbnail} 
+                                        thumb = {books[key].hasOwnProperty('imageLinks') ? books[key].imageLinks.smallThumbnail : 'https://vignette.wikia.nocookie.net/max-steel-reboot/images/7/72/No_Image_Available.gif/revision/latest?cb=20130902173013'} 
                                         moveBooks = {moveBooks} 
                                         id = {books[key].id}
                                         authors = {books[key].authors}
                                         desc = {books[key].description}
                                         shelf = {books[key].shelf}   
+                                        remove = {remove}
+                                        previewLink={books[key].previewLink}
+                                        description = {books[key].description}
                                                                   
                                     />     
-                                </Col> 
+                            </Col> 
                             
                                 
 
                             :   s === 'all'  ?
 
-                                <Col m={2} s={6} key = {key}>
+                                <Col l = {3} xl = {2} m={3} s={6}  key = {key}>
                                         <Books 
                                             title = {books[key].title} 
-                                            thumb = {books[key].imageLinks.smallThumbnail} 
+                                            thumb = {books[key].hasOwnProperty('imageLinks') ? books[key].imageLinks.smallThumbnail : 'https://vignette.wikia.nocookie.net/max-steel-reboot/images/7/72/No_Image_Available.gif/revision/latest?cb=20130902173013'} 
                                             moveBooks = {moveBooks} 
                                             id = {books[key].id}
                                             desc = {books[key].description}
                                             authors = {books[key].authors}
-                                            shelf = {books[key].shelf}  
-                                                                         
+                                            shelf = {books[key].shelf} 
+                                            remove =  {remove}    
+                                            previewLink={books[key].previewLink}   
+                                            description = {books[key].description}                                                                  
                                         />     
-                                    </Col>
+                                </Col>
                                     
-                            :   <p></p>                           
+                            :  ''                        
                     )       
                     })
                 }
                 
             </Row>  
-        </div> 
+      
         
 
         )

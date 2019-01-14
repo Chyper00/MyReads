@@ -14,6 +14,7 @@ class Search extends React.Component {
         }
     
 
+    // verifica a mudanca no input , e atualiza o estado    
     handleChange = (e) => {
 
        this.setState({
@@ -34,27 +35,31 @@ class Search extends React.Component {
                     <div className="col l1">
                         <Link to='/' onClick= {() => load(shelfBooks)}> <h2><i className="material-icons">arrow_back</i></h2> </Link>
                     </div>
-                    <div className="input-field col m8">
-                        <Debounce time="300" handler="onChange">
+                    <div className="input-field col m8">                
+                        <Debounce time="100" handler="onChange">
                             <input placeholder="Name of the book ..." id="bSearch" type="text" class="validate" onChange={this.handleChange}/>  
                         </Debounce> 
                     </div>
                 </div>
             </form>
             <div className="row"> 
-
+            
             <Row>
                 { 
+                    
                     books === undefined  || books === '' ?
+
                     <h2 > No books found ... </h2> :
+                    
+                    // percorre a array de livros 
                     Object.keys(books).map(key => {   
-                     
+                       
                           let  tag =  Object.keys(shelfBooks).map(k => {   
                             return ( shelfBooks[k].id === books[key].id ? shelfBooks[k].shelf : '' );
                           } )
                                     
                         return (                             
-                           <Col m={2} s={6} key='key'>                                   
+                            <Col l = {3} xl = {2} m={3} s={6}  key = {key}>                                  
                                   <Books 
                                     title = {books[key].title} 
                                     thumb = {books[key].hasOwnProperty('imageLinks') ? books[key].imageLinks.smallThumbnail : 'https://vignette.wikia.nocookie.net/max-steel-reboot/images/7/72/No_Image_Available.gif/revision/latest?cb=20130902173013'} 
@@ -62,12 +67,15 @@ class Search extends React.Component {
                                     id = {books[key].id}
                                     authors = {books[key].authors}                                    
                                     shelf = {tag } 
+                                    previewLink={books[key].previewLink}
+                                    description = {books[key].description}
                                   />                                      
                             </Col>    
                            
                             
                         ) 
                     })
+                    
                 }
             </Row> 
             

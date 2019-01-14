@@ -6,44 +6,32 @@ import BookShelve from './BookShelve'
 import Nav from './Nav';
 
 
+// efeito 
 const styles = {
   trasition : 'all 1s ease-out'
 }
-
-/*const shelves = [
-  {
-      title: 'Currently Reading',
-      shelve: 'currentlyReading'
-  },
-  {
-      title: 'Want to Read',
-      shelve: 'wantToRead'
-  },
-  {
-      title: 'Read',
-      shelve: 'read'
-  }
-]
-*/
 
 class BooksApp extends React.Component {
 
   constructor(){
     super();
       this.state = {
-        allBooks : '',
-        books : '',
-        isLoading : true,
-        shelf : 'all',
-        gridValue : true,
-        movBooks : ''
+        allBooks : '', // todos os livros
+        books : '', // livros da busca
+        isLoading : true, // controle do loading
+        shelf : 'all', // controle das estantes
+        gridValue : true, // controle do grid
+        movBooks : '' // livros que mudao de estante
       }
   }
 
+
+  // controla o preloader
   triggerLoading = (swtc) =>{
     swtc ? this.setState ({  isLoading : true   }) : this.setState ({   isLoading : false    })
   } 
 
+  //controla as estantes
   navChange = (shelf) =>{
     this.setState ({
       shelf : shelf
@@ -51,7 +39,15 @@ class BooksApp extends React.Component {
     this.loadBooksFromState (this.state.movBooks);
   }
 
+  // faz a busca e verifica se o query nao esta em branco
   search = (query) => {
+
+    query === '' ? 
+      this.setState({
+        books: '',
+        isLoading : false
+      })
+    :
     this.triggerLoading (true);
     BooksAPI.search(query).then(all => {     
       this.setState({
@@ -69,55 +65,55 @@ class BooksApp extends React.Component {
     return this.state.books
   } 
 
+
+// move os livros de estatante , o input e o id do livro e o status e a estatante
   moveBooks  = (bookId, status) => { 
 
     let bk = this.state.movBooks;
     BooksAPI.update({id : bookId}, status).then (value =>{ 
-
-      console.log(value)
       window.Materialize.toast(`Moved !`, 1000) 
       // acha id do livro que esta mudando e compara com o que ja tem no state
       let movBooksD =  bk.filter((b) => {   if(b.id === bookId ){ return b.shelf = status}   })
       // substitui o array que foi mudado
-      bk  = bk.filter(item => item !== movBooksD)      
+      bk  = bk.find(item => item !== movBooksD)      
       this.setState({
         movBooks : bk
       })
-
-      //this.loadBooksFromState(bk);
       this.loadBooksFromApi();
          
     })       
   }
 
-  add = () => {
+  // remove o livro e carrega o estado 
+  remove  = (bookId, status) => { 
 
+    let bk = this.state.movBooks;
+    BooksAPI.update({id : bookId}, status).then (value =>{ 
+
+      window.Materialize.toast(`Moved !`, 1000) 
+      // acha id do livro que esta mudando e compara com o que ja tem no state
+      let movBooksD =  bk.filter((b) => {   if(b.id === bookId ){ return b.shelf = status}   })
+      // substitui o array que foi mudado
+      bk  = bk.find(item => item !== movBooksD)      
+      this.setState({
+        movBooks : bk
+      })
+      this.loadBooksFromApi();
+         
+    })       
   }
 
+
+  // controla o status do grid
   grid = (gridV) =>{
 
-    gridV ?
-
-    this.setState({
-      gridValue : false
-    })
-
-    :
-
-    this.setState({
-      gridValue : true
-    })
+    this.setState({ gridValue : !gridV })
 
   }
 
-
-  remove = (bookId, status) => {
-    
-
-  }
-
+  
+  // carrega os livros do estado, a ideia e passar como argumento os novos livros, removendo os que foram movidos.
   loadBooksFromState = (books) => { 
-    //console.log(books)   
     this.triggerLoading (true);
     this.setState ({
       allBooks : books,
@@ -125,10 +121,10 @@ class BooksApp extends React.Component {
     })
   }
 
-  async loadBooksFromApi () {    
+// carrega os livros da api 
+  loadBooksFromApi () {    
     this.triggerLoading (true);
-     BooksAPI.getAll().then(all => { 
-     // console.log(all) 
+     BooksAPI.getAll().then(all => {      
         this.setState({ 
           movBooks : all,
           isLoading : false 
@@ -136,13 +132,14 @@ class BooksApp extends React.Component {
     })    
   }
 
+  // ao montar o componente carrega os livros
   async componentDidMount(){      
     this.loadBooksFromApi(); 
   }
  
   render() {    
     return (
-        <div >
+        <div className='container-fluid'>
           <Nav change = {this.navChange} grid = {this.grid} gridValue = {this.state.gridValue}/> 
           <div className="container"> 
               { this.state.isLoading &&  
@@ -156,6 +153,7 @@ class BooksApp extends React.Component {
                     s = {this.state.shelf} 
                     moveBooks = {this.moveBooks}  
                     grid = {this.state.gridValue}
+                    remove = {this.remove}
                 />            
               )}/>
               <Route exact path='/search' render ={() => (  
